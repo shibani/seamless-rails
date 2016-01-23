@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123030436) do
+ActiveRecord::Schema.define(version: 20160123053845) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -50,15 +50,23 @@ ActiveRecord::Schema.define(version: 20160123030436) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "restaurant_id"
   end
+
+  add_index "menu_item_types", ["restaurant_id"], name: "index_menu_item_types_on_restaurant_id", using: :btree
 
   create_table "menu_items", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "price",       precision: 10, scale: 0
+    t.decimal  "price",             precision: 10, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "menu_item_type_id"
+    t.integer  "restaurant_id"
   end
+
+  add_index "menu_items", ["menu_item_type_id"], name: "index_menu_items_on_menu_item_type_id", using: :btree
+  add_index "menu_items", ["restaurant_id"], name: "index_menu_items_on_restaurant_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"

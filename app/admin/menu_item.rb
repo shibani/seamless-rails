@@ -1,6 +1,9 @@
 ActiveAdmin.register MenuItem do
 
-filter :name
+  menu false
 
+  filter :name
+
+  permit_params :name, :price, :description, :menu_item_type
 
 end
