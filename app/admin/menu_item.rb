@@ -4,6 +4,6 @@ ActiveAdmin.register MenuItem do
 
   filter :name
 
-  permit_params :name, :price, :description, :menu_item_type
+  permit_params :id, :name, :price, :description, :menu_item_type
 
 end
