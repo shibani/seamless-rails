@@ -1,16 +1,13 @@
 ActiveAdmin.register_page "Dashboard" do
 
+  menu false
+
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
     columns do
-      column do
-        panel "Models" do
-          ul do
-            li link_to("Restaurants", restaurants_path)
-            # li link_to("Menu Item Types", menu_item_types_path)
-          end
-        end
+      panel "Select from the following:" do
+          link_to "Add a new Restaurant", new_admin_restaurant_path, method: :post
       end
     end
     # Here is an example of a simple dashboard with columns and panels.

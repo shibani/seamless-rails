@@ -9,6 +9,4 @@ Rails.application.routes.draw do
         resources :menu_items
       end
   end
-  # resources :restaurants
-  # resources :menu_item_types
 end
