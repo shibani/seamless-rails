@@ -7,7 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
   content title: proc{ I18n.t("active_admin.dashboard") } do
     columns do
       panel "Select from the following:" do
-          link_to "Add a new Restaurant", new_admin_restaurant_path, method: :post
+          link_to "Add a new Restaurant", admin_restaurants_path, method: :get
       end
     end
     # Here is an example of a simple dashboard with columns and panels.

@@ -132,7 +132,7 @@ ActiveAdmin.register Restaurant, :as => 'Restaurant Menu Items' do
     f.inputs do
       f.has_many :menu_items, new_record: 'Menu Item' do |b|
         b.input :name
-        b.input :price
+        b.input :price, as: :number
         b.input :description
         b.input :menu_item_type, as: :select, collection: MenuItemType.where(restaurant_id: params[:id])
         b.input :_destroy, :as => :boolean, :required => false, :label => 'Delete'
