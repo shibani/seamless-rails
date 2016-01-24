@@ -45,6 +45,8 @@ Rails.application.configure do
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
+  ENV['RAILS_RELATIVE_URL_ROOT'] = "/json"
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
