@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :restaurants do
+    resources :cuisines
     resources :menu_item_types do
         resources :menu_items
       end
   end
+
 end

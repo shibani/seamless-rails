@@ -99,14 +99,13 @@ ActiveAdmin.register Restaurant, :as => 'Restaurant Menu Categories' do
 
   form :html => {:multipart => true} do |f|
     f.inputs do
-      f.has_many :menu_item_types, new_record: 'Restaurant Menu Categories' do |b|
+      f.has_many :menu_item_types, new_record: 'Add Restaurant Menu Category' do |b|
         b.input :name
         b.input :_destroy, :as => :boolean, :required => false, :label => 'Delete'
       end
     end
     f.actions
   end
-
 end
 
 ActiveAdmin.register Restaurant, :as => 'Restaurant Menu Items' do
@@ -130,11 +129,42 @@ ActiveAdmin.register Restaurant, :as => 'Restaurant Menu Items' do
 
   form :html => {:multipart => true} do |f|
     f.inputs do
-      f.has_many :menu_items, new_record: 'Menu Item' do |b|
+      f.has_many :menu_items, new_record: 'Add Menu Item' do |b|
         b.input :name
         b.input :price, as: :number
         b.input :description
         b.input :menu_item_type, as: :select, collection: MenuItemType.where(restaurant_id: params[:id])
+        b.input :_destroy, :as => :boolean, :required => false, :label => 'Delete'
+      end
+    end
+    f.actions
+  end
+
+end
+
+ActiveAdmin.register Restaurant, :as => 'Restaurant Cuisine Types' do
+
+  filter :name
+  filter :city
+
+  index do
+    id_column
+    column :name
+    column :city
+    column :state
+    actions
+  end
+
+  permit_params cuisines_attributes: [:id, :name, :_destroy]
+
+  menu :label => "Restaurant Cuisine Types"
+
+  menu :priority => 6
+
+  form :html => {:multipart => true} do |f|
+    f.inputs do
+      f.has_many :cuisines, new_record: 'Add Cuisine' do |b|
+        b.input :name
         b.input :_destroy, :as => :boolean, :required => false, :label => 'Delete'
       end
     end
