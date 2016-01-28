@@ -7,7 +7,7 @@ ActiveAdmin.register Restaurant do
   filter :name
   filter :city
 
-  permit_params :id, :name, :address1, :address2, :city, :state, :zip, :phone, :hours, :email, :website, :latitude, :longitude
+  permit_params :id, :name, :address1, :address2, :city, :state, :zip, :phone, :hours, :email, :website, :description, :latitude, :longitude
 
   index do
     id_column
@@ -163,9 +163,11 @@ ActiveAdmin.register Restaurant, :as => 'Restaurant Cuisine Types' do
 
   form :html => {:multipart => true} do |f|
     f.inputs do
-      f.has_many :cuisines, new_record: 'Add Cuisine' do |b|
-        b.input :name
-        b.input :_destroy, :as => :boolean, :required => false, :label => 'Delete'
+      f.inputs "Cuisines" do
+        f.has_many :cuisines, new_record: true do |c|
+            c.input :name
+            c.input :_destroy, :as => :boolean, :required => false, :label => 'Delete'
+        end
       end
     end
     f.actions

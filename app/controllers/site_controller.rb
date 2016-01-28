@@ -1,11 +1,12 @@
 class SiteController < ApplicationController
+  
   def search
   end
 
-  def index
-    @restaurants = Restaurant.all
+  def home
+  end
 
-    render :partial => '/site/index.json', :formats => [:json], :locals =>  { restaurants: @restaurants}
+  def index
   end
 
   def show

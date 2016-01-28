@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 
   gem 'devise'
 
-  gem 'geocoder'
+  gem 'geocoder', '1.2.6'
 
   gem 'cocoon'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126011443) do
+ActiveRecord::Schema.define(version: 20160127174647) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,21 +46,14 @@ ActiveRecord::Schema.define(version: 20160126011443) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "cuisine_restaurants", force: true do |t|
-    t.integer  "cuisine_id"
-    t.integer  "restaurant_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "cuisine_restaurants", ["cuisine_id"], name: "index_cuisine_restaurants_on_cuisine_id", using: :btree
-  add_index "cuisine_restaurants", ["restaurant_id"], name: "index_cuisine_restaurants_on_restaurant_id", using: :btree
-
   create_table "cuisines", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "restaurant_id"
   end
+
+  add_index "cuisines", ["restaurant_id"], name: "index_cuisines_on_restaurant_id", using: :btree
 
   create_table "menu_item_types", force: true do |t|
     t.string   "name"
@@ -74,7 +67,7 @@ ActiveRecord::Schema.define(version: 20160126011443) do
   create_table "menu_items", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.decimal  "price",             precision: 10, scale: 0
+    t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "menu_item_type_id"
@@ -97,8 +90,8 @@ ActiveRecord::Schema.define(version: 20160126011443) do
     t.string   "hours"
     t.string   "email"
     t.string   "website"
-    t.decimal  "latitude",         precision: 10, scale: 0
-    t.decimal  "longitude",        precision: 10, scale: 0
+    t.float    "latitude"
+    t.float    "longitude"
     t.text     "description"
     t.string   "owner"
     t.string   "accounts_payable"
