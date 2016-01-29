@@ -3,7 +3,7 @@ restaurants.each_with_index do |restaurant, i| %>
 {	
 	"id":"<%=restaurant.id %>", 
 	"name": "<%=sanitize(restaurant.name) %>", 
-	"type": "<% typesize = restaurant.cuisines.size
+	"type": "<% typesize = restaurant.cuisines.length
 	restaurant.cuisines.each_with_index do |cuisine, j| %><%= sanitize(cuisine.name) %><%= j <= typesize-2 ? ", " : "" %><% end %>"
 }<%= i <= size-2 ? "," : " " %>
 <% end %>]
