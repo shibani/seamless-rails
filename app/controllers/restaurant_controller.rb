@@ -1,7 +1,7 @@
 class RestaurantController < ApplicationController
 
   def index
-    @restaurants = ::Restaurant.all
+    @restaurants = Restaurant.all
 
     if params[:search]
 
