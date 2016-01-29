@@ -3,15 +3,15 @@ class RestaurantController < ApplicationController
   def index
     @restaurants = Restaurant.all
 
-    if params[:search]
+    #if params[:search]
 
       #use .length with geocoder, not .size or .count
       #@search_location = Geocoder.coordinates(params[:search])
       #Rails.logger.debug "check " + @restaurants.length.to_s.inspect
 
-     @restaurants = Restaurant.near(params[:search], 1)
+     #@restaurants = Restaurant.near(params[:search], 1)
       
-    end
+    #end
 
     #render :partial => '/restaurant/index.json', :formats => [:json], :locals =>  { restaurants: @restaurants}
   end
