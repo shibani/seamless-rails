@@ -1,6 +1,17 @@
 {	
-	"id":"<%=restaurant.id %>", 
 	"name": "<%=sanitize(restaurant.name) %>", 
-	"type": "<% typesize = restaurant.cuisines.size
-	restaurant.cuisines.each_with_index do |cuisine, j| %><%= sanitize(cuisine.name) %><%= j <= typesize-2 ? ", " : "" %><% end %>"
+	<%	mitsize = restaurant.menu_item_types.size
+		restaurant.menu_item_types.each_with_index do |mit, i| %>
+		"<%= mit.name %>" : 
+				[
+			<%	misize = mit.menu_items.size
+				mit.menu_items.each_with_index do |mi, j| %>
+				
+					{
+					"name" 			: "<%= mi.name %>",
+					"price" 		: "<%= mi.price %>",
+					"description" 		: "<%= mi.description %>"
+					}<%= j <= misize-2 ? ", " : "" %>
+			<% end %>	]<%= i <= mitsize-2 ? ", " : "" %>
+	<% end %>
 }
