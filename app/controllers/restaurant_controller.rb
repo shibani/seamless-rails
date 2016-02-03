@@ -9,8 +9,15 @@ class RestaurantController < ApplicationController
       #@search_location = Geocoder.coordinates(params[:search])
       #Rails.logger.debug "check " + @restaurants.length.to_s.inspect
 
-     @restaurants = Restaurant.near(params[:search], 1)
+     @restaurants = Restaurant.near(params[:search], 3)
       
+    end
+
+    if params[:latitude] 
+      latitude = params[:latitude]
+      longitude = params[:longitude]
+      #40.7127, 74.0059 
+      @restaurants = Restaurant.near([latitude, longitude], 3)
     end
 
     render :partial => '/restaurant/index.json', :formats => [:json], :locals =>  { restaurants: @restaurants}
