@@ -1,18 +1,27 @@
-	{	
+	[
 	<%	mitsize = restaurant.menu_item_types.length
 		restaurant.menu_item_types.each_with_index do |mit, i| %>
-		"<%= mit.name %>" : 
-				[
-			<%	misize = mit.menu_items.length
+					
+			{ 
+
+			"name" 			: "<%= mit.name.html_safe %>" 
+			
+			}<%= mit.menu_items.length > 0 ? "," : ""%>
+
+		<%	misize = mit.menu_items.length
 				mit.menu_items.each_with_index do |mi, j| %>
 
-					{
-					"name" 			: "<%= mi.name %>",
-					"price" 		: "<%= mi.price %>",
-					"description" 		: "<%= mi.description %>"
-					}<%= j <= misize-2 ? ", " : "" %>
-			<% end %>	]<%= i <= mitsize-2 ? ", " : "" %>
+			{
+
+			"name" 			: "<%= mi.name.html_safe %>",
+			"price" 		: "<%= number_to_currency(mi.price, :unit => "$") %>",
+			"description" 		: "<%= mi.description.html_safe %>"
+
+			}<%= j <= misize-2 || i <= mitsize-2 ? "," : "" %>
+
+		<% end %>
+
 	<% end %>
-	}
+	]
 	
 	
