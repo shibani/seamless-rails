@@ -677,6 +677,8 @@ MenuItem.create([{
         restaurant_id: Restaurant.where(:name=>"Tartina").first.id 
     },
 
+    ######################################################
+
     {
         name: "Organic chicken wings",
         price: "11.00" ,
