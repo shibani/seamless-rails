@@ -47,6 +47,14 @@ tartina = Restaurant.create({
     zip: "10036"
 })
 
+sapsuckers = Restaurant.create({ 
+    name: "Sapsuckers", 
+    address1: "287 Main Street",
+    city: "Huntington",
+    state: "NY",
+    zip: "11743"
+})
+
 ######################################################
 
 brooklyn_standard.menu_item_types.create([
@@ -93,7 +101,14 @@ supper.menu_item_types.create([
 tartina.menu_item_types.create([
     { name: "Beverages" },
     { name: "Lunch" },
-    { name: "Dinner" },
+    { name: "Dinner" }
+])
+
+sapsuckers.menu_item_types.create([
+    { name: "Appetizers" },
+    { name: "Salads" },
+    { name: "Sandwich Joint" },
+    { name: "Entrees" }
 ])
 
 ######################################################
@@ -660,6 +675,70 @@ MenuItem.create([{
         description: "Classic lasagna in an Emiliana style meat with bechamel sauce",
         menu_item_type_id: MenuItemType.where(:name=>"Dinner").first.id,
         restaurant_id: Restaurant.where(:name=>"Tartina").first.id 
+    },
+
+    {
+        name: "Organic chicken wings",
+        price: "11.00" ,
+        description: "half dozen with house gorgonzola sauce",
+        menu_item_type_id: MenuItemType.where(:name=>"Appetizers").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "House fries",
+        price: "7.00" ,
+        description: "with truffled aioli",
+        menu_item_type_id: MenuItemType.where(:name=>"Appetizers").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "Grilled chicken harvest salad",
+        price: "15.00" ,
+        description: "gorgonzola, bacon, beets, almonds, field greens and port wine vinaigrette",
+        menu_item_type_id: MenuItemType.where(:name=>"Salads").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "Caesar salad",
+        price: "10.00" ,
+        description: "Parmesan slivers, house croutons, chopped baby romaine and caesar dressing",
+        menu_item_type_id: MenuItemType.where(:name=>"Salads").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "The Mallet Burger",
+        price: "17.00" ,
+        description: "8oz. house ground custom blend organic beef, tomato, lettuce, red onion, toasted brioche bun",
+        menu_item_type_id: MenuItemType.where(:name=>"Sandwich Joint").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "Philly Cheese Steak",
+        price: "18.00" ,
+        description: "sliced shell steak, american cheese, caramelized onion, hoagie bun",
+        menu_item_type_id: MenuItemType.where(:name=>"Sandwich Joint").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "Blackened Catfish",
+        price: "20.00" ,
+        description: "salsa fresca, roasted potatoes, green beans",
+        menu_item_type_id: MenuItemType.where(:name=>"Entrees").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
+    },
+
+    {
+        name: "Stroganoff",
+        price: "18.00" ,
+        description: "Petit veal meatballs, mushrooms, creamy demi glace sauce, papardelle pasta",
+        menu_item_type_id: MenuItemType.where(:name=>"Entrees").first.id,
+        restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
     }
 
 ])
