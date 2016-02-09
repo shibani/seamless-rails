@@ -15,7 +15,8 @@
 
 			"name" 			: "<%= mi.name.html_safe %>",
 			"price" 		: "<%= number_to_currency(mi.price, :unit => "$") %>",
-			"description" 		: "<%= mi.description.html_safe %>"
+			"description" 		: "<%= mi.description.html_safe %>",
+			"section"		: "<%= mi.menu_item_type.name.html_safe %>"
 
 			}<%= j <= misize-2 || i <= mitsize-2 ? "," : "" %>
 

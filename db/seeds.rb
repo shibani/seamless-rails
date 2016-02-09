@@ -113,13 +113,15 @@ sapsuckers.menu_item_types.create([
 
 ######################################################
 
-MenuItem.create([{ 
+MenuItem.create([
+    { 
         name: "Soup of the Day",
         price: "3.0" ,
         description: "",
         menu_item_type_id: MenuItemType.where(:name=>"Soup of the Day").first.id,
         restaurant_id: Restaurant.where(:name=>"Brooklyn Standard").first.id
     },
+
     {
         name: "Hot Coffee",
         price: "2.0" ,
@@ -127,6 +129,7 @@ MenuItem.create([{
         menu_item_type_id: MenuItemType.where(:name=>"Stumptown Coffee").first.id,
         restaurant_id: Restaurant.where(:name=>"Brooklyn Standard").first.id 
     },
+
     {
         name: "Stumptown Coffee Beans",
         price: "16.0" ,
@@ -134,6 +137,7 @@ MenuItem.create([{
         menu_item_type_id: MenuItemType.where(:name=>"Stumptown Coffee").first.id,
         restaurant_id: Restaurant.where(:name=>"Brooklyn Standard").first.id 
     },
+
     {
         name: "Grilled Chicken Spinach Salad",
         price: "8.0" ,
@@ -141,6 +145,7 @@ MenuItem.create([{
         menu_item_type_id: MenuItemType.where(:name=>"Salads").first.id,
         restaurant_id: Restaurant.where(:name=>"Brooklyn Standard").first.id 
     },
+
     {
         name: "West Coast Salad",
         price: "7.0" ,
@@ -742,7 +747,6 @@ MenuItem.create([{
         menu_item_type_id: MenuItemType.where(:name=>"Entrees").first.id,
         restaurant_id: Restaurant.where(:name=>"Sapsuckers").first.id 
     }
-
 ])
 
 
