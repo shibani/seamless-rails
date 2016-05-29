@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127174647) do
+ActiveRecord::Schema.define(version: 20160529232535) do
+
+  create_table "accounts", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "phone"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -54,6 +69,24 @@ ActiveRecord::Schema.define(version: 20160127174647) do
   end
 
   add_index "cuisines", ["restaurant_id"], name: "index_cuisines_on_restaurant_id", using: :btree
+
+  create_table "delivery_addresses", force: true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "cross_street"
+    t.string   "phone"
+    t.string   "instructions"
+    t.string   "place_label"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delivery_addresses", ["user_id"], name: "index_delivery_addresses_on_user_id", using: :btree
 
   create_table "menu_item_types", force: true do |t|
     t.string   "name"
@@ -106,5 +139,15 @@ ActiveRecord::Schema.define(version: 20160127174647) do
     t.boolean  "categories"
     t.boolean  "items"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
