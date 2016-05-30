@@ -14,5 +14,6 @@ production:
 
 development:
   <<: *default
-  password: root
+  password: lasagnawithbechamelsauce2014
+  #password: root
   #socket: /Applications/MAMP/tmp/mysql/mysql.sock
