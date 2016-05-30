@@ -15,4 +15,4 @@ production:
 development:
   <<: *default
   password: root
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  #socket: /Applications/MAMP/tmp/mysql/mysql.sock
