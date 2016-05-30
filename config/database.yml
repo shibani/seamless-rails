@@ -1,4 +1,4 @@
-production:
+#production:
   encoding: utf8
   adapter: mysql2
   database: seamless
@@ -9,12 +9,12 @@ production:
   pool: 5
   timeout: 5000
 
-development:
-  encoding: utf8
-  adapter: mysql2
-  username: root
-  password: root
-  database: seamless
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
-  pool: 5
-  timeout: 5000
+# development:
+#   encoding: utf8
+#   adapter: mysql2
+#   username: root
+#   password: root
+#   database: seamless
+#   socket: /Applications/MAMP/tmp/mysql/mysql.sock
+#   pool: 5
+#   timeout: 5000
