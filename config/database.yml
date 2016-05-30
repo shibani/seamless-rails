@@ -1,20 +1,18 @@
-production:
-  encoding: utf8
+default: &default
   adapter: mysql2
+  encoding: utf8
   database: seamless
   username: root
-  password: lasagnawithbechamelsauce2014
-  host: 127.0.0.1
-  port: 3306
   pool: 5
   timeout: 5000
 
-# development:
-#   encoding: utf8
-#   adapter: mysql2
-#   username: root
-#   password: root
-#   database: seamless
-#   socket: /Applications/MAMP/tmp/mysql/mysql.sock
-#   pool: 5
-#   timeout: 5000
+production:
+  <<: *default
+  password: lasagnawithbechamelsauce2014
+  host: 127.0.0.1
+  port: 3306
+
+development:
+  <<: *default
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
