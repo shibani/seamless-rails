@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
+  root to: 'site#home' #instead of sessions#new
+
+  get '/' => 'site#home' #instead of sessions#new
+
   get 'site/index'
 
   get 'site/show'
 
   get 'site/create'
 
-  root to: 'site#home'
-
-  get '/' => 'site#home'
+  get    'signup'  => 'users#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -6,14 +6,8 @@ default: &default
   pool: 5
   timeout: 5000
 
-production:
-  <<: *default
-  password: lasagnawithbechamelsauce2014
-  host: 127.0.0.1
-  port: 3306
-
 development:
   <<: *default
-  password: lasagnawithbechamelsauce2014
-  #password: root
-  #socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  #password: lasagnawithbechamelsauce2014
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock

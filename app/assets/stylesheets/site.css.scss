@@ -1,3 +1,78 @@
 // Place all the styles related to the Site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#main_content.landing{
+
+	.login_container{
+		margin:0 auto;
+		width:400px;
+
+		h2{
+			margin-bottom: 5px;
+		}
+
+		form{
+			.field{
+				input{
+					&#username{
+						width: calc(100% - 22px);
+					    border: 1px solid #c9d0d6;
+					    border-radius: 3px;
+					    font-size: 0.95em;
+					    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					    outline: none;
+					    padding: 8px 10px 7px;
+					    margin-bottom:10px;
+					}
+
+					&#password{
+						width: calc(100% - 22px);
+					    border: 1px solid #c9d0d6;
+					    border-radius: 3px;
+					    font-size: 0.95em;
+					    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					    outline: none;
+					    padding: 8px 10px 7px;
+					    margin-bottom:10px;
+					}
+
+					&#email{
+						width: calc(100% - 22px);
+					    border: 1px solid #c9d0d6;
+					    border-radius: 3px;
+					    font-size: 0.95em;
+					    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					    outline: none;
+					    padding: 8px 10px 7px;
+					    margin-bottom:10px;
+					}
+
+					&#confirmpassword{
+						width: calc(100% - 22px);
+					    border: 1px solid #c9d0d6;
+					    border-radius: 3px;
+					    font-size: 0.95em;
+					    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					    outline: none;
+					    padding: 8px 10px 7px;
+					    margin-bottom:10px;
+					}
+				}
+			}
+
+			.actions{
+				margin-top: 0px;
+
+				input{
+					border: 1px solid #c9d0d6;
+					font-size: 0.95em;
+					font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+					outline: none;
+					padding: 8px 25px;
+					margin-bottom:10px;
+				}
+			}
+		}
+	}
+}
