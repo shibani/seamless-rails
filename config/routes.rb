@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   get 'site/create'
 
-  get    'signup'  => 'users#new'
+  get    'signup'  => 'users#new', :as => "new_user"
+  post   'signup'  => 'users#new', :as => "users"
+  get    'login'   => 'sessions#new' 
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   

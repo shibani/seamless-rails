@@ -4,31 +4,27 @@
 
 		<h2>Sign up</h2>
 		
-		<%=form_tag do%>
-      		
-      		<input type="hidden" name="pid" value="">
+		<%= form_for(@user) do |f| %>
 
       		<div class="field">
-		  		<input id="email" type="email" name="email" placeholder="enter email" autocomplete="off" />
+      			<%= f.email_field :email, id: "email", placeholder: "enter email", autocomplete: "off" %>
 			</div>
 
       		<div class="field">
-		  		<input id="username" type="username" name="username" placeholder="enter username" autocomplete="off" />
+      			<%= f.text_field :name, id: "username", placeholder: "enter username", autocomplete: "off" %>
 			</div>
 
 			<div class="field">
-		  		<input id="password" type="password" name="password" placeholder="enter password" autocomplete="off" />
+				<%= f.password_field :password, id: "password", placeholder: "enter password", autocomplete: "off" %>
 			</div>
 
 			<div class="actions">
-		  		<input type="submit" value="Sign in" />
+				<%= f.submit "Create my account" %>
 			</div>
 
 			<p><%= link_to "Click here", root_path %> to return to the sign in page</p>
 
 		<%end%>
-
-	</div>
 
 </section>
 
