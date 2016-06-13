@@ -1,0 +1,119 @@
+.home{
+
+	.header{
+		padding:25px 0;
+		border-bottom: 1px solid #a9a9a9;
+
+		.header-left{
+			display:inline-block;
+			float:left;
+
+			h1{
+				color:#e60000;
+			}
+
+			p.home{
+
+			}
+		}
+
+		.header-right{
+			width:400px;
+			float:right;
+
+			.signin_container{
+
+				h2{
+					margin-bottom: 5px;
+					color:#a9a9a9;
+					font-size:18px;
+					display: inline-block;
+    				float: left;
+				}
+
+				.alert{
+					display: inline-block;
+    				float: right;
+    				margin-top: 5px;
+
+					&.alert-success{
+						color: green;
+					}
+
+					&.alert-error{
+						color:red;
+					}
+				}
+
+				a{
+					color: #e60000;
+				}
+
+				form{
+					.field{
+						input{
+							&#username{
+								width: calc(100% - 22px);
+							    border: 1px solid #c9d0d6;
+							    border-radius: 3px;
+							    font-size: 0.95em;
+							    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+							    outline: none;
+							    padding: 8px 10px 7px;
+							    margin-bottom:10px;
+							}
+
+							&#password{
+								width: calc(100% - 22px);
+							    border: 1px solid #c9d0d6;
+							    border-radius: 3px;
+							    font-size: 0.95em;
+							    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+							    outline: none;
+							    padding: 8px 10px 7px;
+							    margin-bottom:10px;
+							}
+
+							&#email{
+								width: calc(100% - 22px);
+							    border: 1px solid #c9d0d6;
+							    border-radius: 3px;
+							    font-size: 0.95em;
+							    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+							    outline: none;
+							    padding: 8px 10px 7px;
+							    margin-bottom:10px;
+							}
+
+							&#confirmpassword{
+								width: calc(100% - 22px);
+							    border: 1px solid #c9d0d6;
+							    border-radius: 3px;
+							    font-size: 0.95em;
+							    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+							    outline: none;
+							    padding: 8px 10px 7px;
+							    margin-bottom:10px;
+							}
+						}
+					}
+
+					.actions{
+						margin-top: 0px;
+
+						input{
+							border: 1px solid #c9d0d6;
+							font-size: 0.95em;
+							font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+							outline: none;
+							padding: 8px 25px;
+							margin-bottom:10px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#main_content.landing{}
+}

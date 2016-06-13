@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  root to: 'site#home' #instead of sessions#new
+  root to: 'site#home'
 
-  get '/' => 'site#home' #instead of sessions#new
+  get '/' => 'site#home' # *** instead of sessions#new ***
+  #post   '/'   => 'sessions#create'
+  post '/' => 'restaurant#list'
 
   get 'site/index'
 
@@ -10,10 +12,14 @@ Rails.application.routes.draw do
 
   get 'site/create'
 
-  get    'signup'  => 'users#new', :as => "new_user"
-  post   'signup'  => 'users#new', :as => "users"
-  get    'login'   => 'sessions#new' 
-  post   'login'   => 'sessions#create'
+  get 'list' => 'restaurant#list'
+
+  get 'signup'  => 'users#new', :as => "new_user"
+
+  post 'signup' => 'users#create', :as => "users"
+  
+  get 'remote_signup' => 'users#new'
+  
   delete 'logout'  => 'sessions#destroy'
   
   devise_for :admin_users, ActiveAdmin::Devise.config

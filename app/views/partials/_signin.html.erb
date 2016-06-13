@@ -1,12 +1,14 @@
-<section id="main_content" class="landing">
 
-	<div class="login_container">
 
-		<h2>Please sign in</h2>
+	<div class="signin_container">
+
+		<h2>Please sign in</h2> 
+
+		<% flash.each do |key, value| %>
+        	<div class="alert alert-<%= key %>"><%= value %></div>
+      	<% end %>
 		
 		<%=form_tag do%>
-      		
-      		<input type="hidden" name="pid" value="">
 
       		<div class="field">
 		  		<input id="username" type="username" name="username" placeholder="enter username" autocomplete="off" />
@@ -26,5 +28,4 @@
 
 	</div>
 
-</section>
 

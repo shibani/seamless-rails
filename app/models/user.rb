@@ -1,12 +1,28 @@
 class User < ActiveRecord::Base
+
+  attr_accessor :form
+
   before_save { self.email = email.downcase }
 
-  validates :name, presence: true, length: { maximum: 50 }
-
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  
+  validates :email, format: { with: VALID_EMAIL_REGEX, :message => 'is invalid' } 
+
+  validates :email, uniqueness: { case_sensitive: false, :message => ' already has an account associated with it'  }, if: 'name.present?'
+
+  validates :name, length: { minimum: 4, maximum: 50, :message => ' must be 4 characters or more.' }
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 8 }
+  
+  validates :password, length: { minimum: 8, :message => ' must be 8 characters or longer' }, allow_nil: true
+
+
+  HUMANIZED_ATTRIBUTES = {
+    :name => 'Username'
+  }
+
+  def self.human_attribute_name(attr, options={})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
   
 end

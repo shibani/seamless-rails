@@ -1,10 +1,23 @@
 <section id="main_content" class="landing">
 
-	<div class="login_container">
+	<div class="signup_container">
 
 		<h2>Sign up</h2>
+
+		<% if @user.errors.any? %>
+			<% @user.errors.full_messages.each do |message| %>
+				<%= message %><br />
+			<% end %>
+		<% end %>
+
+		<% flash.each do |key, value| %>
+        	<div class="alert alert-<%= key %>"><%= value %></div>
+      	<% end %>
 		
-		<%= form_for(@user) do |f| %>
+		<%= form_for @user, url: {action: "create"}, html: {multipart: "true"} do |f| %>
+
+
+			<%= f.hidden_field :form, :value => request.path.gsub("/", "") %>
 
       		<div class="field">
       			<%= f.email_field :email, id: "email", placeholder: "enter email", autocomplete: "off" %>
