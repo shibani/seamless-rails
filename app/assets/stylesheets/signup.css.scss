@@ -55,6 +55,10 @@
 						    margin-bottom:10px;
 						}
 					}
+
+					&.antispam{
+						display:none;
+					}
 				}
 
 				.actions{
@@ -75,6 +79,10 @@
 		.signup_container{
 			margin:150px auto 0 auto;
 			width:400px;
+
+			// .antispam{
+			// 	display:none;
+			// }
 		}
 	}
 //}

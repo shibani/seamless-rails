@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :form
 
+  attr_accessor :url
+
   before_save { self.email = email.downcase }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -10,7 +12,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: { case_sensitive: false, :message => ' already has an account associated with it'  }, if: 'name.present?'
 
-  validates :name, length: { minimum: 4, maximum: 50, :message => ' must be 4 characters or more.' }
+  validates :name, length: { minimum: 4, maximum: 50 }
 
   has_secure_password
   
