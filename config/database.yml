@@ -14,3 +14,14 @@ development:
 # production:
 #   <<: *default
 #   password: lasagnawithbechamelsauce2014
+
+production:
+  adapter: postgresql
+  host: ec2-23-23-95-27.compute-1.amazonaws.com
+  encoding: utf8
+  database: d2fl9jq40rvrud
+  username: awudygyebgbbod
+  port: 5432
+  password: or5_OfLV3ndw-k1-obCf8amT7l
+  pool: 5
+  timeout: 5000
