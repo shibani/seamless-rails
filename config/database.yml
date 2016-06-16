@@ -8,6 +8,9 @@ default: &default
 
 development:
   <<: *default
-  password: lasagnawithbechamelsauce2014
-  #password: root
-  #socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  password: root
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+# production:
+#   <<: *default
+#   password: lasagnawithbechamelsauce2014
