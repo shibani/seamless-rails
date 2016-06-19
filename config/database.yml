@@ -26,24 +26,24 @@ development:
 #   pool: 5
 #   timeout: 5000
 
-# production:
-#   adapter: mysql2
-#   host: us-cdbr-iron-east-04.cleardb.net
-#   encoding: utf8
-#   database: heroku_3b9257af6e8ee63
-#   username: bddb17fac2d557
-#   password: af4c8d51
-#   pool: 5
-#   timeout: 5000
-
 production:
   adapter: mysql2
-  host: localhost
+  host: us-cdbr-iron-east-04.cleardb.net
   encoding: utf8
-  database: seamless
-  username: root
-  password: root
+  database: heroku_3b9257af6e8ee63
+  username: bddb17fac2d557
+  password: af4c8d51
   pool: 5
   timeout: 5000
+
+# production:
+#   adapter: mysql2
+#   host: localhost
+#   encoding: utf8
+#   database: seamless
+#   username: root
+#   password: root
+#   pool: 5
+#   timeout: 5000
 
 #mysql2://bddb17fac2d557:af4c8d51@us-cdbr-iron-east-04.cleardb.net/heroku_3b9257af6e8ee63?reconnect=true
