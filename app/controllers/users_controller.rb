@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token, :if =>lambda{ signup_params[:form] == "remote_signup" }
+  #skip_before_filter :verify_authenticity_token, :if =>lambda{ signup_params[:form] == "remote_signup" }
 
   def new
     @bodyclass = "signup"
