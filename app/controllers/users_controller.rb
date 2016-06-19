@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def create
     #added as spam filter 
-    unless params[:user][:url].present? || params[:url].present?
+    #unless params[:user][:url].present? || params[:url].present?
         @user = User.new(signup_params)
 
       if @user.valid?
@@ -76,7 +76,7 @@ class UsersController < ApplicationController
         end
       end
         else render "remote_create"
-    end
+    #end
   end
 
 
