@@ -27,7 +27,7 @@ development:
 #   timeout: 5000
 
 production:
-  adapter: postgresql
+  adapter: mysql2
   host: us-cdbr-iron-east-04.cleardb.net
   encoding: utf8
   database: heroku_3b9257af6e8ee63
