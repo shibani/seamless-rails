@@ -28,7 +28,7 @@ development:
 
 production:
   adapter: mysql2
-  host: us-cdbr-iron-east-04.cleardb.net
+  host: us-cdbr-iron-east-04.cleardb.net?reconnect=true
   encoding: utf8
   database: heroku_3b9257af6e8ee63
   username: bddb17fac2d557
