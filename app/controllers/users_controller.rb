@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def create
     #added as spam filter 
-    unless params[:user][:url].present? 
+    unless params[:user][:url].present? || params[:url].present?
         @user = User.new(signup_params)
 
       if @user.valid?
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
           Rails.logger.debug "check: " + @email_error1.inspect
 
           render '/users/create.json.erb'
-          
+
         elsif params[:form] == "remote_signup"
           @notice = "Sign up failed"
           
