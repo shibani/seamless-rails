@@ -33,20 +33,22 @@ gem 'spring',        group: :development
   gem 'capistrano', '2.15.5'
 
   #database
-  gem 'mysql2', '~> 0.3.10'
 
   # group :development, :test do
   #   gem 'sqlite3'
   # end
 
-  # group :development, :test do
-  #   gem 'mysql2', '~> 0.3.10'
-  # end
+  gem 'mysql2', '~> 0.3.10'
 
-  # group :production do
-  #   gem 'pg'
-  #   gem 'rails_12factor'
-  # end
+  group :development, :test do
+    
+  end
+
+  group :production do
+    #gem 'pg'
+    #gem 'mysql2', '~> 0.3.10'
+    gem 'rails_12factor'
+  end
 
   gem 'activeadmin', github: 'activeadmin'
 
