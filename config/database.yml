@@ -15,13 +15,24 @@ development:
 #   <<: *default
 #   password: lasagnawithbechamelsauce2014
 
+# production:
+#   adapter: postgresql
+#   host: ec2-23-23-95-27.compute-1.amazonaws.com
+#   encoding: utf8
+#   database: d2fl9jq40rvrud
+#   username: awudygyebgbbod
+#   port: 5432
+#   password: or5_OfLV3ndw-k1-obCf8amT7l
+#   pool: 5
+#   timeout: 5000
+
 production:
   adapter: postgresql
-  host: ec2-23-23-95-27.compute-1.amazonaws.com
+  host: us-cdbr-iron-east-04.cleardb.net
   encoding: utf8
-  database: d2fl9jq40rvrud
-  username: awudygyebgbbod
+  database: heroku_3b9257af6e8ee63
+  username: bddb17fac2d557
   port: 5432
-  password: or5_OfLV3ndw-k1-obCf8amT7l
+  password: af4c8d51
   pool: 5
   timeout: 5000

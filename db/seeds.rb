@@ -7,109 +7,109 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-brooklyn_standard = Restaurant.create({ 
-    name: "Brooklyn Standard", 
-    address1: "188 Nassau Ave",
-    city: "Brooklyn",
-    state: "NY",
-    zip: "11222"
-})
+# brooklyn_standard = Restaurant.create({ 
+#     name: "Brooklyn Standard", 
+#     address1: "188 Nassau Ave",
+#     city: "Brooklyn",
+#     state: "NY",
+#     zip: "11222"
+# })
 
-blue_dog = Restaurant.create({ 
-    name: "Blue Dog Kitchen Bar", 
-    address1: "101 West 25th St",
-    city: "New York",
-    state: "NY",
-    zip: "10001"
-})
+# blue_dog = Restaurant.create({ 
+#     name: "Blue Dog Kitchen Bar", 
+#     address1: "101 West 25th St",
+#     city: "New York",
+#     state: "NY",
+#     zip: "10001"
+# })
 
-lyric = Restaurant.create({ 
-    name: "Lyric Diner", 
-    address1: "283 3rd Ave",
-    city: "New York",
-    state: "NY",
-    zip: "10010"
-})
+# lyric = Restaurant.create({ 
+#     name: "Lyric Diner", 
+#     address1: "283 3rd Ave",
+#     city: "New York",
+#     state: "NY",
+#     zip: "10010"
+# })
 
-supper = Restaurant.create({ 
-    name: "Supper", 
-    address1: "156 East 2nd St",
-    city: "New York",
-    state: "NY",
-    zip: "10009"
-})
+# supper = Restaurant.create({ 
+#     name: "Supper", 
+#     address1: "156 East 2nd St",
+#     city: "New York",
+#     state: "NY",
+#     zip: "10009"
+# })
 
-tartina = Restaurant.create({ 
-    name: "Tartina", 
-    address1: "653 Ninth Ave",
-    city: "New York",
-    state: "NY",
-    zip: "10036"
-})
+# tartina = Restaurant.create({ 
+#     name: "Tartina", 
+#     address1: "653 Ninth Ave",
+#     city: "New York",
+#     state: "NY",
+#     zip: "10036"
+# })
 
-sapsuckers = Restaurant.create({ 
-    name: "Sapsuckers", 
-    address1: "287 Main Street",
-    city: "Huntington",
-    state: "NY",
-    zip: "11743"
-})
+# sapsuckers = Restaurant.create({ 
+#     name: "Sapsuckers", 
+#     address1: "287 Main Street",
+#     city: "Huntington",
+#     state: "NY",
+#     zip: "11743"
+# })
 
-######################################################
+# ######################################################
 
-brooklyn_standard.menu_item_types.create([
-    { name: "Soup of the Day" },
-    { name: "Stumptown Coffee"},
-    { name: "Salads"},
-    { name: "Vegan and Vegetarian Sandwiches"},
-    { name: "Chips and Snacks"},
-    { name: "Baked Treats"},
-    { name: "Kosher Treats"},
-    { name: "Ice Cream"}
-])
+# brooklyn_standard.menu_item_types.create([
+#     { name: "Soup of the Day" },
+#     { name: "Stumptown Coffee"},
+#     { name: "Salads"},
+#     { name: "Vegan and Vegetarian Sandwiches"},
+#     { name: "Chips and Snacks"},
+#     { name: "Baked Treats"},
+#     { name: "Kosher Treats"},
+#     { name: "Ice Cream"}
+# ])
 
-blue_dog.menu_item_types.create([
-    { name: "Blue Dog Special Salads" },
-    { name: "Brunch" },
-    { name: "Quiche" },
-    { name: "Gourmet Sandwiches" },
-    { name: "Bottled Drinks" },
-    { name: "From Our Bakery" }
-])
+# blue_dog.menu_item_types.create([
+#     { name: "Blue Dog Special Salads" },
+#     { name: "Brunch" },
+#     { name: "Quiche" },
+#     { name: "Gourmet Sandwiches" },
+#     { name: "Bottled Drinks" },
+#     { name: "From Our Bakery" }
+# ])
 
-lyric.menu_item_types.create([
-    { name: "Health Shakes" },
-    { name: "Bread and Muffins" },
-    { name: "From the Grill" },
-    { name: "Fresh Daily Seafood" },
-    { name: "Entrees and Roasts" },
-    { name: "Sandwich Favorites" },
-    { name: "Side Orders" },
-    { name: "Desserts" },
-    { name: "From the Fountain" }
-])
+# lyric.menu_item_types.create([
+#     { name: "Health Shakes" },
+#     { name: "Bread and Muffins" },
+#     { name: "From the Grill" },
+#     { name: "Fresh Daily Seafood" },
+#     { name: "Entrees and Roasts" },
+#     { name: "Sandwich Favorites" },
+#     { name: "Side Orders" },
+#     { name: "Desserts" },
+#     { name: "From the Fountain" }
+# ])
 
-supper.menu_item_types.create([
-    { name: "Antipasti" },
-    { name: "Insalate" },
-    { name: "Special Prix-fixe Dinner" },
-    { name: "Entrees" },
-    { name: "Sides" },
-    { name: "Desserts" }
-])
+# supper.menu_item_types.create([
+#     { name: "Antipasti" },
+#     { name: "Insalate" },
+#     { name: "Special Prix-fixe Dinner" },
+#     { name: "Entrees" },
+#     { name: "Sides" },
+#     { name: "Desserts" }
+# ])
 
-tartina.menu_item_types.create([
-    { name: "Beverages" },
-    { name: "Lunch" },
-    { name: "Dinner" }
-])
+# tartina.menu_item_types.create([
+#     { name: "Beverages" },
+#     { name: "Lunch" },
+#     { name: "Dinner" }
+# ])
 
-sapsuckers.menu_item_types.create([
-    { name: "Appetizers" },
-    { name: "Salads" },
-    { name: "Sandwich Joint" },
-    { name: "Entrees" }
-])
+# sapsuckers.menu_item_types.create([
+#     { name: "Appetizers" },
+#     { name: "Salads" },
+#     { name: "Sandwich Joint" },
+#     { name: "Entrees" }
+# ])
 
 ######################################################
 
@@ -118,8 +118,8 @@ MenuItem.create([
         name: "Soup of the Day",
         price: "3.0" ,
         description: "",
-        menu_item_type_id: MenuItemType.where(:name=>"Soup of the Day").first.id,
-        restaurant_id: Restaurant.where(:name=>"Brooklyn Standard").first.id
+        menu_item_type_id: MenuItemType.where(:name=>"Soup of the Day").id,
+        restaurant_id: Restaurant.where(:name=>"Brooklyn Standard").id
     },
 
     {
