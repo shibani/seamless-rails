@@ -16,7 +16,19 @@ Rails.application.routes.draw do
 
   get 'list' => 'restaurant#list'
 
-  devise_for :users
+  #devise_for :users
+
+  # Rails.application.routes.draw do
+  #     devise_for :users, controllers: {
+  #       sessions: 'users/sessions'
+  #     }
+  # end
+
+  if Rails.env.production?
+    devise_for :users, :controllers => { registrations: 'users/registrations' } 
+  else
+    devise_for :users, :controllers => { sessions: 'users/sessions' } 
+  end
 
   get 'signup'  => 'users#new', :as => "new_user"
 
