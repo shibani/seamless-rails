@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
 
   #skip_before_filter :verify_authenticity_token, :if =>lambda{ params[:form] == "remote_signup" }
+  #before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!
 
   def new
     @bodyclass = "signup"
     @user = User.new
+  end
+
+  def show
+    if @user
+      @user = User.find_by email: params[:username]
+    end
   end
 
   def create

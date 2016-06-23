@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  
   root to: 'site#home'
 
   get '/' => 'site#home' # *** instead of sessions#new ***
   #post   '/'   => 'sessions#create'
-  post '/' => 'restaurant#list'
+  #post '/' => 'restaurant#list'
+  post '/' => 'users#show'
 
   get 'site/index'
 
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   get 'site/create'
 
   get 'list' => 'restaurant#list'
+
+  devise_for :users
 
   get 'signup'  => 'users#new', :as => "new_user"
 

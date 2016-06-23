@@ -4,44 +4,35 @@
 
 		<h2>Sign up</h2>
 
-		<% if @user.errors.any? %>
-			<% @user.errors.full_messages.each do |message| %>
-				<%= message %><br />
-			<% end %>
-		<% end %>
-
-		<% flash.each do |key, value| %>
-        	<div class="alert alert-<%= key %>"><%= value %></div>
-      	<% end %>
+		<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 		
-		<%= form_for @user, url: {action: "create"}, html: {multipart: "true"} do |f| %>
+		<%= devise_error_messages! %>
 
-
-			<%= f.hidden_field :form, :value => request.path.gsub("/", "") %>
-
-      		<div class="field">
-      			<%= f.email_field :email, id: "email", placeholder: "enter email", autocomplete: "off" %>
-			</div>
-
-      		<div class="field">
-      			<%= f.text_field :name, id: "username", placeholder: "enter username", autocomplete: "off" %>
+			<div class="field">
+			  <%= f.label :email %><br />
+			  <%= f.email_field :email, autofocus: true %>
 			</div>
 
 			<div class="field">
-				<%= f.password_field :password, id: "password", placeholder: "enter password", autocomplete: "off" %>
+			  <%= f.label :password %>
+			  <% if @minimum_password_length %>
+			  <em>(<%= @minimum_password_length %> characters minimum)</em>
+			  <% end %><br />
+			  <%= f.password_field :password, autocomplete: "off" %>
 			</div>
 
-			<div class="antispam">
-				Leave this empty: <%= f.text_field :url, autocomplete: "off" %>
+			<div class="field">
+			  <%= f.label :password_confirmation %><br />
+			  <%= f.password_field :password_confirmation, autocomplete: "off" %>
 			</div>
 
 			<div class="actions">
-				<%= f.submit "Create my account" %>
+			  <%= f.submit "Sign up" %>
 			</div>
 
-			<p><%= link_to "Click here", root_path %> to return to the sign in page</p>
+		<% end %>
 
-		<%end%>
+		<%= render "devise/shared/links" %>
 
 </section>
 
