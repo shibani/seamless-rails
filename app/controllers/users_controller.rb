@@ -91,7 +91,7 @@ class UsersController < ApplicationController
 
   def signup_params
     if params[:user]
-      params.require(:user).permit(:email, :name, :password, :form)  
+      params.require(:user).permit(:email, :name, :username, :password, :form)  
     end
   end
 
