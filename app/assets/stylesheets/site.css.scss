@@ -71,3 +71,12 @@ textarea {
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
 }
+
+.signin_container, .signup_container{
+	margin:150px auto 0px auto;
+	width:400px;
+}
+
+input, .signin_container input{
+	margin-bottom:10px;
+}

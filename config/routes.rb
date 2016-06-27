@@ -16,19 +16,14 @@ Rails.application.routes.draw do
 
   get 'list' => 'restaurant#list'
 
-  #devise_for :users
+  devise_for :users, :controllers => { sessions: 'users/sessions' }
 
-  # Rails.application.routes.draw do
-  #     devise_for :users, controllers: {
-  #       sessions: 'users/sessions'
-  #     }
+  # if Rails.env.production?
+  #   devise_for :users, :controllers => { registrations: 'users/registrations' } 
+  # else
+  #   devise_for :users, :controllers => { sessions: 'users/sessions' }
+  #   #devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }  
   # end
-
-  if Rails.env.production?
-    devise_for :users, :controllers => { registrations: 'users/registrations' } 
-  else
-    devise_for :users, :controllers => { sessions: 'users/sessions' } 
-  end
 
   get 'signup'  => 'users#new', :as => "new_user"
 
@@ -37,6 +32,9 @@ Rails.application.routes.draw do
   get 'remote_signup' => 'users#new'
   
   delete 'logout'  => 'sessions#destroy'
+
+  get 'users/:username' => 'users#show', :as => "user"
+  
   
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

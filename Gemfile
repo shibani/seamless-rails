@@ -60,6 +60,10 @@ gem 'spring',        group: :development
 
   gem 'bcrypt', '~> 3.1.11'
 
+  gem 'simple_token_authentication', '~> 1.0' # see semver.org
+
+  #gem 'redis-throttle', git: 'git://github.com/lelylan/redis-throttle.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

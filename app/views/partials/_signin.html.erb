@@ -10,23 +10,23 @@
 		
 		<%=form_tag do%>
 
-      		<div class="field">
+      		<!-- <div class="field">
 		  		<input id="username" type="username" name="username" placeholder="enter username" autocomplete="off" />
+			</div> -->
+
+			<div class="field">
+		  		<input id="email" type="email" name="email" placeholder="enter email" autocomplete="off" />
 			</div>
 
 			<div class="field">
 		  		<input id="password" type="password" name="password" placeholder="enter password" autocomplete="off" />
 			</div>
 
-			<div class="antispam">
-				Leave this empty: <input type="text" name="url" />
-			</div>
-
 			<div class="actions">
 		  		<input type="submit" value="Sign in" />
 			</div>
 
-			<p>Or <%= link_to "click here", new_user_path %> to sign up</p>
+			<p>Or <%= link_to "click here", new_user_registration_path %> to sign up</p>
 
 		<%end%>
 
