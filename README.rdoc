@@ -109,3 +109,7 @@ valid
 </html>
 )
 
+
+Started POST "/users" for 127.0.0.1 at 2016-06-26 21:45:21 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i8TaDg2mUMCIqND51ehDq5YtS30CQEdTdYoScIpOdso=", "user"=>{"email"=>"sm@gmail.com", "username"=>"smook", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}

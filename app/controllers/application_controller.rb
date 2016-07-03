@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+  respond_to :json, :html
+
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  
 
   acts_as_token_authentication_handler_for User, only: [:new, :create, :update, :destroy]
 
@@ -22,3 +26,4 @@ class ApplicationController < ActionController::Base
     end
   end
 end
+#Rails.logger.debug "check: " + slide_params.inspect

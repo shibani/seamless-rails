@@ -1,15 +1,20 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+  
+  skip_before_filter :verify_authenticity_token, , only: [:create], :if => Proc.new { |c| c.request.format == 'application/json' }
+
+  respond_to :html, :json
 
   def new
     flash[:info] = 'Registrations are not open yet, but please check back soon'
-    redirect_to root_path
+    #redirect_to root_path
   end
 
   def create
-    flash[:info] = 'Registrations are not open yet, but please check back soon'
-    redirect_to root_path
+    #flash[:info] = 'Registrations are not open yet, but please check back soon'
+    #redirect_to root_path
+    Rails.logger.debug "check: " + params.inspect
   end
 
 
