@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get 'list' => 'restaurant#list'
 
-  devise_for :users, :controllers => { sessions: 'users/sessions' }
+  devise_for :users, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations' }
 
   # if Rails.env.production?
   #   devise_for :users, :controllers => { registrations: 'users/registrations' } 

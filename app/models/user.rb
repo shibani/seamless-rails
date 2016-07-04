@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   acts_as_token_authenticatable
+  #field :authentication_token
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

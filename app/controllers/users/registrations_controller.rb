@@ -2,21 +2,63 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
   
-  skip_before_filter :verify_authenticity_token, , only: [:create], :if => Proc.new { |c| c.request.format == 'application/json' }
+  #skip_before_filter :verify_authenticity_token, , only: [:create], :if => Proc.new { |c| c.request.format == 'application/json' }
+  #before_filter :validate_auth_token, :except => :new, :create
 
   respond_to :html, :json
 
   def new
-    flash[:info] = 'Registrations are not open yet, but please check back soon'
+    #flash[:info] = 'Registrations are not open yet, but please check back soon'
+
+    super
     #redirect_to root_path
   end
+
 
   def create
     #flash[:info] = 'Registrations are not open yet, but please check back soon'
     #redirect_to root_path
-    Rails.logger.debug "check: " + params.inspect
+    
+
+    build_resource(sign_up_params)
+ 
+    if resource.save
+      #response.headers['Client-Id'] = @user.authentication_token
+      #Rails.logger.debug "check: " + @user.authentication_token.inspect
+      return render :json => { :success => true, :user_id => @user.authentication_token }
+    else
+      return render :status => 401, :json => { :errors => resource.errors }
+    end
   end
 
+  # PUT /resource
+  # We need to use a copy of the resource because we don't want to change
+  # the current user in place.
+  # def update
+  #   prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+  #   logger.debug(params[:user])
+  #   if resource.update_with_password(account_update_params)
+  #     if is_navigational_format?
+  #       update_needs_confirmation?(resource, prev_unconfirmed_email)
+  #     end
+  #     sign_in resource_name, resource
+  #     return render :json => {success: true}
+  #   else
+  #     clean_up_passwords resource
+  #     return render :status => 401, :json => {errors: resource.errors}
+  #   end
+  # end
+
+  #@user = User.find_by_username(params[:username])
+  #token.user = @user if _provided_valid_password? || _provided_valid_api_key?
+
+  # def _provided_valid_password?
+  #   params[:password] == 'foo password'
+  # end
+
+  # def _provided_valid_api_key?
+  #   params[:api_key] == 'foo key'
+  # end
 
   # GET /resource/sign_up
   # def new
@@ -73,4 +115,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def account_update_params
+    params.require(:user).permit( :email, :password, :password_confirmation, :current_password)
+  end
+
+  def sign_up_params
+    params.require(:user).permit( :email, :username, :password, :password_confirmation)
+  end
 end
