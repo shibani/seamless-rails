@@ -9,6 +9,13 @@
 			}
 
 			form{
+				#error_explanation{
+
+					h2{
+						font-size:1.5em;
+					}
+				}
+
 				.field{
 					input{
 						&#username{

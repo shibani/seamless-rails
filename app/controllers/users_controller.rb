@@ -11,9 +11,6 @@ class UsersController < ApplicationController
     if params[:username]
       @user = User.find_by username: params[:username]
     end
-    if request.post? or request.patch?
-      
-    end
   end
 
   def create

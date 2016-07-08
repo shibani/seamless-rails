@@ -25,9 +25,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save
       #response.headers['Client-Id'] = @user.authentication_token
       #Rails.logger.debug "check: " + @user.authentication_token.inspect
-      return render :json => { :success => true, :user_id => @user.authentication_token }
+      if request.format == "text/html" || request.content_type == "text/html"
+        redirect_to root_path
+      else
+        return render :json => { :success => true, :user_id => @user.authentication_token }
+      end
     else
-      return render :status => 401, :json => { :errors => resource.errors }
+      if request.format == "text/html" || request.content_type == "text/html"
+        render "users/new"
+      else
+        return render :status => 401, :json => { :errors => resource.errors }
+      end
     end
   end
 

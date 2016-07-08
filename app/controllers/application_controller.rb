@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   acts_as_token_authentication_handler_for User, only: [:new, :create, :update, :destroy]
 
-  before_action :configure_permitted_parameters, only: [:new, :create]
+  before_action :configure_permitted_parameters, if: :devise_controller?
   before_filter :configure_account_update_params, only: [:update]
 
   protected
@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
   #before_filter :authenticate_user_from_token!
   # This is Devise's authentication
   #before_filter :authenticate_user!
+
+  def after_sign_in_path_for(resource)
+    render "users/show"
+  end
 
   private
   

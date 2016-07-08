@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   root to: 'site#home'
 
   get '/' => 'site#home' # *** instead of sessions#new ***
-  #post   '/'   => 'sessions#create'
+  post   '/'   => 'sessions#create'
   #post '/' => 'restaurant#list'
-  post '/' => 'users#show'
+  #post '/' => 'users#show'
 
   get 'site/index'
 

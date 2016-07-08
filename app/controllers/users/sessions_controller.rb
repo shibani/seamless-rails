@@ -1,16 +1,29 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
-  
+  respond_to :html, :json
 
   #GET /resource/sign_in
   def new
     #super
-    redirect_to root_path
   end
 
   #POST /resource/sign_in
   def create
-    super
+    #super
+    if request.format == "text/html" || request.content_type == "text/html"
+      if signed_in?(resource_name)
+        redirect_to root_path, :notice => 'Logged in successfully'
+      else
+        flash.now.alert = 'Login failed'
+        render new
+      end
+    else
+      if signed_in?(resource_name)
+        return render :json => { :success => true }
+      else
+        return render :status => 401, :json => { :errors => resource.errors }
+      end
+    end
   end
 
   # DELETE /resource/sign_out

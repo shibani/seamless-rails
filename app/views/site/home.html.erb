@@ -12,6 +12,7 @@
   			<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
 		<% else %>
 			<%= render '/partials/signin' %>
+			<%# render 'devise/sessions/form' %>
 		<% end %>
 	</div>
 	<div class="clear"></div>

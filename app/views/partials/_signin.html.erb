@@ -8,22 +8,18 @@
         	<div class="alert alert-<%= key %>"><%= value %></div>
       	<% end %>
 		
-		<%= form_tag do %>
-
-      		<!-- <div class="field">
-		  		<input id="username" type="username" name="username" placeholder="enter username" autocomplete="off" />
-			</div> -->
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
 			<div class="field">
-		  		<input id="email" type="email" name="email" placeholder="enter email" autocomplete="off" />
+		  		<%= f.email_field :email, :autofocus => true, :placeholder => 'enter email', :autocomplete => 'off' %>
 			</div>
 
 			<div class="field">
-		  		<input id="password" type="password" name="password" placeholder="enter password" autocomplete="off" />
+		  		<%= f.password_field :password, :placeholder => 'enter password', :autocomplete => 'off' %>
 			</div>
 
 			<div class="actions">
-		  		<input type="submit" value="Sign in" />
+		  		<%= f.submit "Sign in" %>
 			</div>
 
 			<p>Or <%= link_to "click here", new_user_registration_path %> to sign up</p>
