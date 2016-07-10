@@ -18,8 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     #flash[:info] = 'Registrations are not open yet, but please check back soon'
     #redirect_to root_path
-    
-
     build_resource(sign_up_params)
  
     if resource.save
@@ -28,79 +26,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if request.format == "text/html" || request.content_type == "text/html"
         redirect_to root_path
       else
-        return render :json => { :success => true, :user_id => @user.authentication_token }
+        return render :status => 200, :json => { :user_id => @user.authentication_token }
       end
     else
       if request.format == "text/html" || request.content_type == "text/html"
         render "users/new"
       else
         return render :status => 401, :json => { :errors => resource.errors }
+        #error cases: email exists, username exists, forgot password
       end
     end
   end
-
-  # PUT /resource
-  # We need to use a copy of the resource because we don't want to change
-  # the current user in place.
-  # def update
-  #   prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-  #   logger.debug(params[:user])
-  #   if resource.update_with_password(account_update_params)
-  #     if is_navigational_format?
-  #       update_needs_confirmation?(resource, prev_unconfirmed_email)
-  #     end
-  #     sign_in resource_name, resource
-  #     return render :json => {success: true}
-  #   else
-  #     clean_up_passwords resource
-  #     return render :status => 401, :json => {errors: resource.errors}
-  #   end
-  # end
-
-  #@user = User.find_by_username(params[:username])
-  #token.user = @user if _provided_valid_password? || _provided_valid_api_key?
-
-  # def _provided_valid_password?
-  #   params[:password] == 'foo password'
-  # end
-
-  # def _provided_valid_api_key?
-  #   params[:api_key] == 'foo key'
-  # end
-
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
-
-  # POST /resource
-  # def create
-  #   super
-  # end
-
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource
-  # def update
-  #   super
-  # end
-
-  # DELETE /resource
-  # def destroy
-  #   super
-  # end
-
-  # GET /resource/cancel
-  # Forces the session data which is usually expired after sign
-  # in to be expired now. This is useful if the user wants to
-  # cancel oauth signing in/up in the middle of the process,
-  # removing all OAuth session data.
-  # def cancel
-  #   super
-  # end
 
   # protected
 

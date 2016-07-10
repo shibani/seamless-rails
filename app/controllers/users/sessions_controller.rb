@@ -12,16 +12,20 @@ class Users::SessionsController < Devise::SessionsController
     #super
     if request.format == "text/html" || request.content_type == "text/html"
       if signed_in?(resource_name)
+        @user = User.find_by email: params[:user][:email]
         redirect_to root_path, :notice => 'Logged in successfully'
       else
+        @user = User.find_by email: params[:user][:email]
         flash.now.alert = 'Login failed'
         render new
       end
     else
       if signed_in?(resource_name)
-        return render :json => { :success => true }
+        @user = User.find_by email: params[:user][:email]
+        return render :status => 200, :json => { :user_id => @user.authentication_token }
       else
-        return render :status => 401, :json => { :errors => resource.errors }
+        return render :status => 401, :json => { :errors => "Login failed" }
+        #error cases: username and password do not match
       end
     end
   end

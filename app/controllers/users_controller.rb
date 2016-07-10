@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!
+  before_filter :authenticate_user_from_token!, :except => [:create]
+  #before_filter :authenticate_user!
 
   def new
     @bodyclass = "signup"
@@ -27,15 +28,11 @@ class UsersController < ApplicationController
         elsif signup_params[:form] == "remote_signup"
           if @user.save
             @notice = "Sign up was successful!"
-            #render "remote_create"
-            #render '/users/remote_create.json.erb', :locals =>  { restaurants: @restaurants}
             render '/users/create.json.erb'
           end
         elsif params[:form] == "remote_signup"
           if @user.save
             @notice = "Sign up was successful!"
-            #render "remote_create"
-            #render '/users/remote_create.json.erb', :locals =>  { restaurants: @restaurants}
             render '/users/create.json.erb'
           end
         end
@@ -85,23 +82,34 @@ class UsersController < ApplicationController
     #end
   end
 
-
-  def remote_create
-  end
-
   def signup_params
     if params[:user]
       params.require(:user).permit(:email, :name, :username, :password, :form)  
     end
   end
 
-#Rails.logger.debug "check: " + @path.inspect
-end
+  private
+  
+  def authenticate_user_from_token!
+    user_email = params[:user_email].presence
+    user       = user_email && User.find_by_email(user_email)
 
-#error codes:
-#01 - email - is invalid
-#02 - email - already has an account associated with it
-#03 - name - is too short (minimum is 4 characters)
-#04 - name - is too long (maximum is 50 characters)
-#05 - password - can't be blank
-#06 - password - must be 8 characters or longer
+    # Notice how we use Devise.secure_compare to compare the token
+    # in the database with the token given in the params, mitigating
+    # timing attacks.
+    if user && Devise.secure_compare(user.authentication_token, params[:user_token])
+      sign_in user, store: false
+    else
+      redirect_to root_url, alert: "Not authorized" if !signed_in?
+    end
+  end
+  #Rails.logger.debug "check: " + @path.inspect
+
+  #error codes:
+  #01 - email - is invalid
+  #02 - email - already has an account associated with it
+  #03 - name - is too short (minimum is 4 characters)
+  #04 - name - is too long (maximum is 50 characters)
+  #05 - password - can't be blank
+  #06 - password - must be 8 characters or longer
+end
