@@ -13,11 +13,12 @@ class Users::SessionsController < Devise::SessionsController
     if request.format == "text/html" || request.content_type == "text/html"
       if signed_in?(resource_name)
         @user = User.find_by email: params[:user][:email]
-        redirect_to root_path, :notice => 'Logged in successfully'
+        #redirect_to root_path, :notice => 'Logged in successfully'
+        #render "users/show"
+        redirect_to "/users/#{@user.id}/#{@user.username}"
       else
         @user = User.find_by email: params[:user][:email]
-        flash.now.alert = 'Login failed'
-        render new
+        redirect_to root_path, :notice => 'Logged failed'
       end
     else
       if signed_in?(resource_name)

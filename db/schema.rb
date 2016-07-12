@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626193743) do
+ActiveRecord::Schema.define(version: 20160712032220) do
 
   create_table "accounts", force: true do |t|
     t.string   "firstname"
@@ -42,6 +42,21 @@ ActiveRecord::Schema.define(version: 20160626193743) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "addresses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "addresslabel"
+    t.integer  "user_id"
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -139,6 +154,22 @@ ActiveRecord::Schema.define(version: 20160626193743) do
     t.boolean  "categories"
     t.boolean  "items"
   end
+
+  create_table "user_infos", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "primary_phone"
+    t.integer  "user_id"
+    t.string   "bill_address1"
+    t.string   "bill_address2"
+    t.string   "bill_city"
+    t.string   "bill_state"
+    t.string   "bill_zip"
+  end
+
+  add_index "user_infos", ["user_id"], name: "index_user_infos_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             default: "", null: false

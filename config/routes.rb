@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   
   delete 'logout'  => 'sessions#destroy'
 
-  get 'users/:username' => 'users#show', :as => "user"
+  get 'users/:id/:username' => 'users#show', :as => "user"
   
   
   devise_for :admin_users, ActiveAdmin::Devise.config
