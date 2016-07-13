@@ -19,6 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     #flash[:info] = 'Registrations are not open yet, but please check back soon'
     #redirect_to root_path
     build_resource(sign_up_params)
+    @user_info = UserInfo.create(params[:user_info])
+    @user.user_info = @user_info
  
     if resource.save
       #response.headers['Client-Id'] = @user.authentication_token

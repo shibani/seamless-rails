@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
 
   get 'users/:id/:username' => 'users#show', :as => "user"
+
+  get 'users/:id/:username/edit' => 'users#edit', :as => "edit_user"
   
   
   devise_for :admin_users, ActiveAdmin::Devise.config

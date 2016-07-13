@@ -1,3 +1,42 @@
 <p>User Info</p>
-<p>Email: <%= @user.email %></p>
+
+<div class="field">
+	<p><span class="label">Email</span>: <%= @user.email.present? ? @user.email : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">First name</span>: <%= @user.user_info.firstname.present? ? @user.firstname : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">Last name</span>: <%= @user.user_info.lastname.present? ? @user.lastname : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">Address 1</span>: <%= @user.user_info.bill_address1.present? ? @user.bill_address1 : "Not specified" %></p>
+</div>
+
+
+<div class="field">
+	<p><span class="label">Address 2</span>: <%= @user.user_info.bill_address2.present? ? @user.bill_address2 : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">City</span>: <%= @user.user_info.bill_city.present? ? @user.bill_city : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">State</span>: <%= @user.user_info.bill_state.present? ? @user.bill_state : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">Zip</span>: <%= @user.user_info.bill_zip.present? ? @user.bill_zip : "Not specified" %></p>
+</div>
+
+<div class="field">
+	<p><span class="label">Phone</span>: <%= @user.user_info.primary_phone.present? ? @user.primary_phone : "Not specified" %></p>
+</div>
+
+<%= link_to "Edit", edit_user_path %>
+
 

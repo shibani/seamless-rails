@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token
 
+  has_one :user_info, dependent: :destroy
+
   has_many :addresses
 
   def ensure_authentication_token
