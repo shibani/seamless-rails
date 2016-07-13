@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
         redirect_to "/users/#{@user.id}/#{@user.username}"
       else
         @user = User.find_by email: params[:user][:email]
-        redirect_to root_path, :notice => 'Logged failed'
+        redirect_to root_path, :notice => 'Login failed'
       end
     else
       if signed_in?(resource_name)
