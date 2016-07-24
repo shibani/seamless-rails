@@ -25,42 +25,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save
       #response.headers['Client-Id'] = @user.authentication_token
       #Rails.logger.debug "check: " + @user.authentication_token.inspect
-      if request.format == "text/html" || request.content_type == "text/html"
-        redirect_to root_path
-      else
-        return render :status => 200, :json => { :user_id => @user.authentication_token }
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.json { return render :status => 200, :json => { :user_id => @user.authentication_token} }
       end
     else
-      if request.format == "text/html" || request.content_type == "text/html"
-        render "users/new"
-      else
-        return render :status => 401, :json => { :errors => resource.errors }
-        #error cases: email exists, username exists, forgot password
+      respond_to do |format|
+        format.html { render "users/new" }
+        format.json { return render :status => 401, :json => { :errors => resource.errors } }
       end
     end
   end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.for(:account_update) << :attribute
-  # end
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
 
   def account_update_params
     params.require(:user).permit( :email, :password, :password_confirmation, :current_password)

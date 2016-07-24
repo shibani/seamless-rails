@@ -18,16 +18,11 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { sessions: 'users/sessions', registrations: 'users/registrations' }
 
-  # if Rails.env.production?
-  #   devise_for :users, :controllers => { registrations: 'users/registrations' } 
-  # else
-  #   devise_for :users, :controllers => { sessions: 'users/sessions' }
-  #   #devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }  
-  # end
-
   get 'signup'  => 'users#new', :as => "new_user"
 
   post 'signup' => 'users#create', :as => "users"
+
+  post 'user_info' => 'users#user_info', :as => "user_info"
   
   get 'remote_signup' => 'users#new'
   
