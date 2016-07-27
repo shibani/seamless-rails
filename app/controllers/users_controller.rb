@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def show_json
+    if params[:id]
+      #@user = User.find_by username: params[:username]
+      @user = User.find(params[:id])
+    end
+  end
+
   def edit
   end
 
@@ -34,7 +41,7 @@ class UsersController < ApplicationController
           #respond_to json here, send success/failure msgs back to app
           respond_to do |format|
             format.html {  }
-            format.json { return render :status => 200, :json => { :status => "success" } }
+            format.json { render :json => { :status => 200, :message => "success", :userId => @user.id } }
           end
         end
       end
