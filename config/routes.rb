@@ -32,7 +32,9 @@ Rails.application.routes.draw do
 
   get 'users/:id/:username/edit' => 'users#edit', :as => "edit_user"
 
-  post 'json/:id/:username' => 'users#show_json', :as => "json_user"
+  post 'show_json' => 'users#show_json', :as => "json_user"
+
+  post 'add_address' => 'users#add_address' 
   
   
   devise_for :admin_users, ActiveAdmin::Devise.config

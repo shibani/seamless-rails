@@ -16,9 +16,49 @@ class UsersController < ApplicationController
   end
 
   def show_json
-    if params[:id]
-      #@user = User.find_by username: params[:username]
-      @user = User.find(params[:id])
+    #authenticate user here
+    if request.post? or request.patch?
+      if params[:user][:token]
+        @user = User.find_by(authentication_token: params[:user][:token])
+        Rails.logger.debug "check: " + @user.username.inspect
+      end
+      respond_to do |format|
+        format.html {  }
+        format.json { render :json => { 
+            :status => 200, 
+            :firstname => @user.user_info.firstname,
+            :lastname => @user.user_info.lastname,
+            :address1 => @user.user_info.bill_address1,
+            :address2 => @user.user_info.bill_address2,
+            :city => @user.user_info.bill_city,
+            :state => @user.user_info.bill_state,
+            :zip => @user.user_info.bill_zip,
+            :primary_phone => @user.user_info.primary_phone,
+            :userId => @user.id 
+          } 
+        }
+      end
+    end
+  end
+
+  def add_address
+    if request.post? or request.patch?
+      if params[:user][:token]
+        @user = User.find_by(authentication_token: params[:user][:token])
+        Rails.logger.debug "check: " + @user.username.inspect
+        if params[:address]
+          @address = @user.addresses.new(address_params)
+        end
+      end
+      #authenticate user here
+      respond_to do |format|
+        if @address.save
+          format.html {  }
+          format.json { render :json => { :status => 200, :message => "success"
+            } 
+          }
+        end
+      end
     end
   end
 
@@ -62,6 +102,12 @@ class UsersController < ApplicationController
 
   def user_info_params
     params.require(:user_info).permit(:firstname, :lastname, :address1, :address2, :city, :state, :zip, :primary_phone)
+  end
+
+  def address_params
+    if params[:address]
+      params.require(:address).permit(:firstname, :lastname, :address, :address2, :city, :state, :zip, :cross_street, :phone, :instructions, :place_type)
+    end
   end
 
   private
