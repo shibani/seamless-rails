@@ -92,6 +92,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def submit_token
+  end
+
   def signup_params
     if params[:user]
       params.require(:user).permit(:email, :name, :username, :password, :form)  

@@ -10,6 +10,8 @@ json payload limits
 
 clean up layouts
 
+add scroll capability to views where user has to enter info and scroll
+
 add unique on user id and place_type combo in addresses table.
 
 STRIPE env variables in production
