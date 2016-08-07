@@ -76,7 +76,11 @@ class UsersController < ApplicationController
         Rails.logger.debug "check: " + @user.id.inspect
         @user_info = UserInfo.find_by(user_id: @user.id)
         @user_info.update_attributes(firstname: user_info_params[:firstname], lastname: user_info_params[:lastname], primary_phone: user_info_params[:primary_phone], bill_address1: user_info_params[:address1], bill_address2: user_info_params[:address2], bill_city: user_info_params[:city], bill_state: user_info_params[:state], bill_zip: user_info_params[:zip])
+        
+        customer = Stripe::Customer.create(:email => @user.email)
+
         if @user_info.save
+          user.update_attribute(:stripe_id, customer.id)
           Rails.logger.debug "check: saved"
           #respond_to json here, send success/failure msgs back to app
           respond_to do |format|
@@ -96,7 +100,7 @@ class UsersController < ApplicationController
 
   def signin_params
     if params[:user]
-      params.require(:user).permit(:email, :token)  
+      params.require(:user).permit(:email, :token, :stripe_id)  
     end
   end
 
