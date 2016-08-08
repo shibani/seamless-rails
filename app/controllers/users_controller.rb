@@ -80,7 +80,7 @@ class UsersController < ApplicationController
         customer = Stripe::Customer.create(:email => @user.email)
 
         if @user_info.save
-          user.update_attribute(:stripe_id, customer.id)
+          @user.update_attribute(:stripe_id, customer.id)
           Rails.logger.debug "check: saved"
           #respond_to json here, send success/failure msgs back to app
           respond_to do |format|
@@ -93,6 +93,7 @@ class UsersController < ApplicationController
   end
 
   def submit_token
+    
   end
 
   def signup_params

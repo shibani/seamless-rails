@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   post 'show_json' => 'users#show_json', :as => "json_user"
 
   post 'add_address' => 'users#add_address' 
+
+  post 'submit_token' => 'users#submit_token' 
   
   
   devise_for :admin_users, ActiveAdmin::Devise.config
