@@ -93,7 +93,25 @@ class UsersController < ApplicationController
   end
 
   def submit_token
-    
+    #Rails.logger.debug "check: " + signin_params.inspect
+    if request.post? or request.patch?
+      if signin_params
+        @user = User.find_by(authentication_token: signin_params[:token])
+      end
+      if charge_params
+        chg_amt = (charge_params[:amount].gsub(/[$ ,]/,'').to_f*100).to_i
+        #Rails.logger.debug "check: " + chg_amt.inspect
+        customer = Stripe::Customer.retrieve(@user.stripe_id)
+        #update customer with currency amout and description
+        #*****check if credit card exists before creating*****
+        customer.sources.create(:source => charge_params[:stripeToken])
+        Stripe::Charge.create (
+            amount: chg_amt, # in cents
+            currency: charge_params[:currency],
+            customer: customer.id
+          )
+      end
+    end  
   end
 
   def signup_params
@@ -115,6 +133,12 @@ class UsersController < ApplicationController
   def address_params
     if params[:address]
       params.require(:address).permit(:firstname, :lastname, :address, :address2, :city, :state, :zip, :cross_street, :phone, :instructions, :place_type)
+    end
+  end
+
+  def charge_params
+    if params[:charge]
+      params.require(:charge).permit(:stripeToken, :amount, :currency, :description)
     end
   end
 
