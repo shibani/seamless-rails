@@ -85,7 +85,7 @@ class UsersController < ApplicationController
           #respond_to json here, send success/failure msgs back to app
           respond_to do |format|
             format.html {  }
-            format.json { render :json => { :status => 200, :message => "success", :userId => @user.id } }
+            format.json { render :json => { :status => 200, :message => "success", :userId => @user.id, :custId => @user.stripe_id} }
           end
         end
       end
@@ -93,23 +93,45 @@ class UsersController < ApplicationController
   end
 
   def submit_token
+    #Stripe::Customer.retrieve().sources.all(:limit => 3, :object => "card")
     #Rails.logger.debug "check: " + signin_params.inspect
     if request.post? or request.patch?
-      if signin_params
+      if params[:id]
+        @user = User.find(params[:id])
+        cards = Stripe::Customer.retrieve(@user.stripe_id).sources.all(:object => "card")
+        Rails.logger.debug "check: " + cards.inspect
+      elsif charge_params 
         @user = User.find_by(authentication_token: signin_params[:token])
-      end
-      if charge_params
         chg_amt = (charge_params[:amount].gsub(/[$ ,]/,'').to_f*100).to_i
         #Rails.logger.debug "check: " + chg_amt.inspect
         customer = Stripe::Customer.retrieve(@user.stripe_id)
         #update customer with currency amout and description
         #*****check if credit card exists before creating*****
-        customer.sources.create(:source => charge_params[:stripeToken])
-        Stripe::Charge.create (
+        
+        card_fingerprint = Stripe::Token.retrieve(charge_params[:stripeToken]).try(:card).try(:fingerprint) 
+
+        default_card = customer.sources.all.data.select{|card| card.fingerprint ==  card_fingerprint}.last if card_fingerprint 
+
+        unless card_fingerprint
+          customer.sources.create(:source => charge_params[:stripeToken])
+        end
+
+        begin
+          charge = Stripe::Charge.create(
             amount: chg_amt, # in cents
             currency: charge_params[:currency],
-            customer: customer.id
+            customer: customer.id,
+            description: "some description of the product"
           )
+        rescue Stripe::CardError => e
+          status 402
+          return "Card was declined: #{e.message}" 
+        end
+        Rails.logger.debug "check: " + charge.inspect
+        respond_to do |format|
+          format.html {  }
+          format.json { render :json => { :status => 200, :message => "success" } }
+        end
       end
     end  
   end

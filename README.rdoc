@@ -1,5 +1,7 @@
 TO DO:
 
+sign up view - when errors are returned show messages in iOS
+
 rails geofencing
 
 sort restos by cuisine

@@ -34,7 +34,9 @@ Rails.application.routes.draw do
 
   post 'show_json' => 'users#show_json', :as => "json_user"
 
-  post 'add_address' => 'users#add_address' 
+  post 'add_address' => 'users#add_address'
+
+  get 'submit_token/:id/:username' => 'users#submit_token'
 
   post 'submit_token' => 'users#submit_token' 
   
