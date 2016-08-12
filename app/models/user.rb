@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   acts_as_token_authenticatable
+  after_create :save_hashed_id 
   #field :authentication_token
 
   # Include default devise modules. Others available are:
@@ -13,6 +14,15 @@ class User < ActiveRecord::Base
   has_one :user_info, dependent: :destroy
 
   has_many :addresses
+
+  after_create :save_hashed_id 
+
+  def save_hashed_id
+    hashids = Hashids.new("t22t3!orn", 8)
+    hash = hashids.encode(self.id)
+    self.hash_id = hash
+    self.save
+  end
 
   def ensure_authentication_token
     if authentication_token.blank?

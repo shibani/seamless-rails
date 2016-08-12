@@ -96,26 +96,45 @@ class UsersController < ApplicationController
     #Stripe::Customer.retrieve().sources.all(:limit => 3, :object => "card")
     #Rails.logger.debug "check: " + signin_params.inspect
     if request.post? or request.patch?
-      if params[:id]
-        @user = User.find(params[:id])
+      @user = User.find_by(authentication_token: signin_params[:token])
+      if card_params
         cards = Stripe::Customer.retrieve(@user.stripe_id).sources.all(:object => "card")
+        Rails.logger.debug "check: " + cards.count.to_s
         Rails.logger.debug "check: " + cards.inspect
+        if cards.count > 0 
+          cards.each do |card|
+            Rails.logger.debug "card: " + card[:last4].inspect
+          end
+          respond_to do |format|
+            format.html {  }
+            format.json { render :json => { :status => 200, :message => "cards on file" } }
+          end
+        else
+          respond_to do |format|
+            format.html {  }
+            format.json { render :json => { :status => 200, :message => "no cards" } }
+          end
+        end 
       elsif charge_params 
-        @user = User.find_by(authentication_token: signin_params[:token])
         chg_amt = (charge_params[:amount].gsub(/[$ ,]/,'').to_f*100).to_i
-        #Rails.logger.debug "check: " + chg_amt.inspect
-        customer = Stripe::Customer.retrieve(@user.stripe_id)
-        #update customer with currency amout and description
-        #*****check if credit card exists before creating*****
         
-        card_fingerprint = Stripe::Token.retrieve(charge_params[:stripeToken]).try(:card).try(:fingerprint) 
+        #update customer with currency amount and description
+        customer = Stripe::Customer.retrieve(@user.stripe_id)
+        cards = Stripe::Customer.retrieve(@user.stripe_id).sources.all(:object => "card")
+        if cards.count > 0
+          #*****check if credit card exists before creating*****
+          card_fingerprint = Stripe::Token.retrieve(charge_params[:stripeToken]).try(:card).try(:fingerprint) 
 
-        default_card = customer.sources.all.data.select{|card| card.fingerprint ==  card_fingerprint}.last if card_fingerprint 
+          Rails.logger.debug "check: 0 cards: " + card_fingerprint.inspect
 
-        unless card_fingerprint
+          unless card_fingerprint
+            customer.sources.create(:source => charge_params[:stripeToken])
+          end
+        else
           customer.sources.create(:source => charge_params[:stripeToken])
-        end
 
+          default_card = customer.sources.all.data.select{|card| card.fingerprint ==  card_fingerprint}.last if card_fingerprint 
+        end
         begin
           charge = Stripe::Charge.create(
             amount: chg_amt, # in cents
@@ -127,7 +146,9 @@ class UsersController < ApplicationController
           status 402
           return "Card was declined: #{e.message}" 
         end
+
         Rails.logger.debug "check: " + charge.inspect
+        
         respond_to do |format|
           format.html {  }
           format.json { render :json => { :status => 200, :message => "success" } }
@@ -138,13 +159,13 @@ class UsersController < ApplicationController
 
   def signup_params
     if params[:user]
-      params.require(:user).permit(:email, :name, :username, :password, :form)  
+      params.require(:user).permit(:email, :name, :username, :password, :form, :hash_id)  
     end
   end
 
   def signin_params
     if params[:user]
-      params.require(:user).permit(:email, :token, :stripe_id)  
+      params.require(:user).permit(:email, :token, :stripe_id, :hash_id)  
     end
   end
 
@@ -161,6 +182,12 @@ class UsersController < ApplicationController
   def charge_params
     if params[:charge]
       params.require(:charge).permit(:stripeToken, :amount, :currency, :description)
+    end
+  end
+
+  def card_params
+    if params[:card]
+      params.require(:card).permit(:last4, :exp, :cvv)
     end
   end
 

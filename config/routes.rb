@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   post 'add_address' => 'users#add_address'
 
-  get 'submit_token/:id/:username' => 'users#submit_token'
+  get 'submit_token/:hash_id/:username' => 'users#submit_token'
 
   post 'submit_token' => 'users#submit_token' 
   

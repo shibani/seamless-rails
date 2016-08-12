@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       #Rails.logger.debug "check: " + @user.authentication_token.inspect
       respond_to do |format|
         format.html { redirect_to root_path }
-        format.json { return render :status => 200, :json => { :user_id => @user.authentication_token, :user_simple_id => @user.id} }
+        format.json { return render :status => 200, :json => { :user_id => @user.authentication_token, :user_simple_id => @user.hash_id} }
       end
     else
       respond_to do |format|

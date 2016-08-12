@@ -64,6 +64,8 @@ gem 'spring',        group: :development
 
   gem 'stripe'
 
+  gem 'hashids'
+
   #gem 'redis-throttle', git: 'git://github.com/lelylan/redis-throttle.git'
 
 # Use ActiveModel has_secure_password
