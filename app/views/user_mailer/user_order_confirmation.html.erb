@@ -1,0 +1,38 @@
+<html>
+   
+   <head>
+      <meta content = 'text/html; charset = UTF-8' http-equiv = 'Content-Type' />
+   </head>
+   
+   <body>
+      <h1>Hi <%= @name %></h1>
+      
+      <p>
+         Thank you for your order to <%= @resto_name %>, submitted at <%= @submitted_at %>.<br>
+      </p>
+
+      <p>Attached is a summary of your order: TBD - Order details go here</p>
+      
+      <p>
+         Your order total comes to $ <%= @total %>, including $ <%= @tax %> in tax and $ <%= @tip %> in tip.
+      </p>
+
+      <p>We will be delivering to:
+         <%= @name %><br />
+         <%= @address1 %><br />
+         <%= @address2 %><br />
+         <%= @city %>, <%= @state %> <%= @zip %><br />
+         <%= @cross_street %><br />
+         <%= @phone %><br />
+         Special Instructions: <%= @instructions %><br />
+      </p>
+
+      <p>Your card ending in <%= @cardlast4 %> and expiring on <%= @exp %> has been charged.</p>
+
+      <p>Thank you for your order!</p>
+
+      Sincerely,
+      SM-Seamless
+      
+   </body>
+</html>

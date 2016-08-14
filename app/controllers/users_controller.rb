@@ -151,11 +151,59 @@ class UsersController < ApplicationController
 
         Rails.logger.debug "check: " + charge.inspect
 
-        #get cc details from here
+        #parse shopping cart items
+        #"shoppingCart"=>{"Waffles"=>["1", "$11.00"], "Eggs Benedict"=>["1", "$14.00"]}
 
-        #RestaurantMailer.resto_order_confirmation(name,address1,address2,city,state,zip,phone,order(items),tax,tip,total,submitted_at,resto_email).deliver
+        user_email = params[:user][:email]
+    
+        tax = params[:orderDetails][:taxAmt]
+        tip = params[:orderDetails][:tipAmt]
+        total = (charge["amount"].to_f)/100
 
-        #UserMailer.user_order_confirmation(name,address1,address2,city,state,zip,phone,order(items),tax,tip,total,cardlast4,submitted_at,user_email).deliver
+        cardlast4 = charge["source"]["last4"]
+        Rails.logger.debug "check last4: " + cardlast4.inspect
+
+        exp = '#{charge["source"]["exp_month"]}\#{charge["source"]["exp_year"]}'
+        submitted_at = Time.now
+        
+        resto_name = params[:orderDetails][:restoName]
+        resto = Restaurant.find_by(name: resto_name)
+        #resto_email = resto.email
+        resto_email = "shibani.mookerjee@gmail.com"
+
+        order_items = params[:shoppingCart]
+
+        Rails.logger.debug "check Order: " + order_items.inspect
+
+        address_obj = params[:orderDetails][:deliveryLoc]
+        
+        if address_obj == "acct_primary"
+          del_address = @user.user_info
+          name = del_address.firstname + " " + del_address.lastname
+          address1 = del_address.bill_address1
+          address2 = del_address.bill_address2
+          city = del_address.bill_city
+          state = del_address.bill_state
+          zip = del_address.bill_zip
+          phone = del_address.primary_phone
+          cross_street = "cross street not provided"
+          instructions = "instructions not provided"
+        else
+          del_address = Address.find_by(place_type: address_obj)
+          name = del_address.firstname + " " + del_address.lastname
+          address1 = del_address.address
+          address2 = del_address.address2
+          city = del_address.city
+          state = del_address.state
+          zip = del_address.zip
+          phone = del_address.phone
+          cross_street = del_address.cross_street
+          instructions = del_address.instructions
+        end
+
+        RestaurantMailer.resto_order_confirmation(name,address1,address2,city,state,zip,phone,user_email,cross_street,instructions,tax,tip,total,resto_name,submitted_at,resto_email).deliver
+
+        UserMailer.user_order_confirmation(name,address1,address2,city,state,zip,phone,cross_street,instructions,tax,tip,total,resto_name,cardlast4,exp,submitted_at,user_email).deliver
         
         respond_to do |format|
           format.html {  }

@@ -5,19 +5,34 @@
    </head>
    
    <body>
-      <h1>Welcome to example.com, <%= @user.name %></h1>
+      <h1>Hi <%= @resto_name %></h1>
       
       <p>
-         You have successfully signed up to example.com,  username is: 
-         <%= @user.login %>.<br>
+         You have received an order, submitted at <%= @submitted_at %> by <%= @name %>.<br>
       </p>
       
       <p>
-         To login to the site, just follow this link: 
-         <%= @url %>.
+         Details for the order are attached below:
       </p>
-      
-      <p>Thanks for joining and have a great day!</p>
+
+      <p>Delivery Address:
+         <%= @name %><br />
+         <%= @address1 %><br />
+         <%= @address2 %><br />
+         <%= @city %>, <%= @state %> <%= @zip %><br />
+         <%= @cross_street %><br />
+         <%= @phone %><br />
+         Special Instructions: <%= @instructions %><br />
+      </p>
+
+      <p>Attached is a summary of the order: TBD - Order details go here</p>
+
+      <p>The order total is $ <%= @total %>, including $ <%= @tax %> in tax and $ <%= @tip %> in tip.</p>
+
+      <p>The customer can be contact at <%= @user_email %> or <%= @phone %> if you have any further questions.
+
+      Sincerely,
+      SM-Seamless
       
    </body>
 </html>

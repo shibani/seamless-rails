@@ -1,20 +1,25 @@
 class UserMailer < ActionMailer::Base
   default from: "info@sm-seamless.herokuapp.com"
 
-  def user_order_confirmation(fullname, phone, email, phase, resting_option, wake, floral, transport, num_guests, veteran, user_email)
-        @fullname = fullname
-        @phone = phone
-        @email = email
-        @phase = phase
-        @resting_option = resting_option
-        @wake = wake
-        @floral = floral
-        @transport = transport
-        @num_guests = num_guests
-        @veteran = veteran
+  def user_order_confirmation(name,address1,address2,city,state,zip,phone,cross_street,instructions,tax,tip,total,resto_name,cardlast4,exp,submitted_at,user_email)
 
+        @name = name
+        @address1 = address1
+        @address2 = address2
+        @city = city
+        @state = state
+        @zip = zip
+        @phone = phone
+        @cross_street = cross_street
+        @instructions = instructions
+        @tax = tax
+        @tip = tip
+        @total = total
+        @resto_name = resto_name
+        @cardlast4 = cardlast4
+        @exp = exp
+        @submitted_at = submitted_at
         @user_contact = user_email
-        # @home_contact = 'shibani@kindreddevelopment.com'
 
         mail(to: @user_contact, subject: 'Your SM-Seamless Order')
   end
