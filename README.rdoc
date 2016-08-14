@@ -16,9 +16,19 @@ add scroll capability to views where user has to enter info and scroll
 
 add unique on user id and place_type combo in addresses table.
 
+show multiple addresses for user to choose from
+
 STRIPE env variables in production
 
 update user info
 
-delivery address choices
+check boxes
+
+delivery address choices 
+
+show multiple credit cards for user to choose from
+
+recharge a credit card on file
+
+send email - mailgun to track
 

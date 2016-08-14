@@ -76,6 +76,8 @@ class UsersController < ApplicationController
         Rails.logger.debug "check: " + @user.id.inspect
         @user_info = UserInfo.find_by(user_id: @user.id)
         @user_info.update_attributes(firstname: user_info_params[:firstname], lastname: user_info_params[:lastname], primary_phone: user_info_params[:primary_phone], bill_address1: user_info_params[:address1], bill_address2: user_info_params[:address2], bill_city: user_info_params[:city], bill_state: user_info_params[:state], bill_zip: user_info_params[:zip])
+
+        Rails.logger.debug "check: before Stripe"
         
         customer = Stripe::Customer.create(:email => @user.email)
 
@@ -116,7 +118,7 @@ class UsersController < ApplicationController
           end
         end 
       elsif charge_params 
-        chg_amt = (charge_params[:amount].gsub(/[$ ,]/,'').to_f*100).to_i
+        chg_amt = (charge_params[:amount]*100).to_i
         
         #update customer with currency amount and description
         customer = Stripe::Customer.retrieve(@user.stripe_id)
@@ -148,6 +150,12 @@ class UsersController < ApplicationController
         end
 
         Rails.logger.debug "check: " + charge.inspect
+
+        #get cc details from here
+
+        #RestaurantMailer.resto_order_confirmation(name,address1,address2,city,state,zip,phone,order(items),tax,tip,total,submitted_at,resto_email).deliver
+
+        #UserMailer.user_order_confirmation(name,address1,address2,city,state,zip,phone,order(items),tax,tip,total,cardlast4,submitted_at,user_email).deliver
         
         respond_to do |format|
           format.html {  }
