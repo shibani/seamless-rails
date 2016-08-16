@@ -1,5 +1,5 @@
 class RestaurantMailer < ActionMailer::Base
-  default from: "info@sm-seamless.herokuapp.com"
+  default from: "postmaster@sm-seamless.herokuapp.com"
 
   def resto_order_confirmation(name,address1,address2,city,state,zip,phone,user_email,cross_street,instructions,tax,tip,total,resto_name,submitted_at,resto_email)
         
