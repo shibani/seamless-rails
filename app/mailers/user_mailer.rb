@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "postmaster@sandbox278e302a4c714163936c23aefdc7e5b5.mailgun.org"
+  default from: "info@sm-seamless.herokuapp.com"
 
   def user_order_confirmation(name,address1,address2,city,state,zip,phone,cross_street,instructions,tax,tip,total,resto_name,cardlast4,exp,submitted_at,user_email)
 
