@@ -163,7 +163,7 @@ class UsersController < ApplicationController
         cardlast4 = charge["source"]["last4"]
         Rails.logger.debug "check last4: " + cardlast4.inspect
 
-        exp = '#{charge["source"]["exp_month"]}\#{charge["source"]["exp_year"]}'
+        exp = (charge["source"]["exp_month"]) + "/" + (charge["source"]["exp_year"])
         submitted_at = Time.now
         
         resto_name = params[:orderDetails][:restoName]
