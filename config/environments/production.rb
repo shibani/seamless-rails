@@ -95,16 +95,4 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-   # config.action_mailer.default_url_options = {:host => 'sm-seamless.herokuapp.com', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
-   # config.action_mailer.raise_delivery_errors = true
-   # config.action_mailer.delivery_method = :smtp
-   # config.action_mailer.perform_deliveries = true
-   # config.action_mailer.smtp_settings = {
-   #     :address => "smtp.gmail.com",
-   #     :port => 587,
-   #     :authentication => :plain,   # I've also tried :login
-   #     :enable_starttls_auto => true,  # Also tried tls => true
-   #     :user_name => 'shibani@kindreddevelopment.com',
-   #     :password => 'shibani0616m'
-   #   } #I've also tried having the attribute :domain => 'myapp.herokuapp.com',
 end
